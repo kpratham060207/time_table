@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeekGrid — Timetable Maker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <div class="page">
+      <header class="header">
+        <div class="brand-block">
+          <p class="brand">WeekGrid</p>
+          <h1>Your week, mapped out.</h1>
+          <p class="subtitle">
+            Add courses by day — code, name, and time. Saved in this browser.
+          </p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn btn-ghost" id="clear-all">
+            Clear all
+          </button>
+        </div>
+      </header>
+
+      <section class="form-panel" aria-labelledby="add-class-heading">
+        <div class="form-head">
+          <h2 id="add-class-heading">Add a class</h2>
+          <p class="form-hint">Pick a day, fill the details, hit add.</p>
+        </div>
+        <form id="class-form" class="class-form">
+          <label>
+            <span>Day</span>
+            <select id="day" name="day" required>
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+              <option value="sunday">Sunday</option>
+            </select>
+          </label>
+          <label>
+            <span>Course code</span>
+            <input
+              id="course-code"
+              name="courseCode"
+              type="text"
+              placeholder="CSE101"
+              maxlength="20"
+              required
+              autocomplete="off"
+            />
+          </label>
+          <label class="span-name">
+            <span>Course name</span>
+            <input
+              id="course-name"
+              name="courseName"
+              type="text"
+              placeholder="Data Structures"
+              maxlength="80"
+              required
+              autocomplete="off"
+            />
+          </label>
+          <label>
+            <span>Start</span>
+            <input id="start-time" name="startTime" type="time" required />
+          </label>
+          <label>
+            <span>End</span>
+            <input id="end-time" name="endTime" type="time" required />
+          </label>
+          <button type="submit" class="btn btn-primary">Add class</button>
+        </form>
+        <p id="form-error" class="form-error" hidden></p>
+        <p id="form-success" class="form-success" hidden></p>
+      </section>
+
+      <main class="week-grid" id="week-grid" aria-live="polite"></main>
+    </div>
+
+    <div id="toast" class="toast" hidden role="status"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
